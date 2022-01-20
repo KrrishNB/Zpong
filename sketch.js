@@ -2,6 +2,7 @@ var ball, paddle, blocks, edges, score=0, life=3
 var gamestate = "serve";
 var brickSound,gameOverSound,bgSound;
 var goImage,paddleImg,ballImg,bgImg;
+var boxImg1;
 
 function preload(){
   brickSound=loadSound("BreakingOfBrick.mp3");
@@ -11,6 +12,8 @@ function preload(){
   bgImage=loadImage("images/bg.png");
   paddleImg = loadAnimation("images/p1.png","images/p2.png","images/p3.png","images/p4.png","images/p5.png","images/p6.png","images/p7.png","images/p8.png","images/p9.png","images/p10.png","images/p11.png","images/p12.png","images/p13.png","images/p14.png","images/p15.png","images/p16.png");
   ballImg = loadAnimation("images/b1.png","images/b2.png","images/b3.png","images/b4.png","images/b5.png","images/b6.png","images/b7.png","images/b8.png","images/b9.png","images/b10.png","images/b11.png","images/b12.png")
+  boxImg1 = loadAnimation("images/bo1.png","images/bo2.png","images/bo3.png","images/bo4.png","images/bo5.png","images/bo6.png",
+  "images/bo7.png","images/bo8.png","images/bo9.png")
 }
 
 function brickHit(ball,brick){
@@ -34,11 +37,11 @@ function setup() {
   paddle.scale = 0.18;
   blocks=new Group();
   createBrick(50,"red");
-  createBrick(80,"green");
-  createBrick(110,"#31ebf5");
-  createBrick(140,"yellow");
-  createBrick(170,"orange");
-  createBrick(200,"#31ebf5");
+  createBrick(90,"green");
+  createBrick(130,"#31ebf5");
+  createBrick(170,"yellow");
+  createBrick(210,"orange");
+ 
   edges=createEdgeSprites();
 }
 
@@ -95,7 +98,9 @@ function play(){
 function createBrick(y,colour ){
   for(var i=0;i<8;i++){
     var brick=createSprite(100+100*i,y,95,25)
-    brick.shapeColor=colour
+    brick.addAnimation("block",boxImg1);
+    brick.scale= 0.59;
+    //brick.shapeColor=colour
     blocks.add(brick) 
   }
 }
